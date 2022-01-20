@@ -6,10 +6,14 @@ const applicationName = "nodejs-http-server";
 process.title = applicationName;
 
 const createServer = () => {
-  const server = fastify({ logger: false });
+  const server = fastify({ logger: true });
 
   server.get("/", async (request, reply) => {
-    reply.send({ hello: "world" });
+
+    setTimeout(() => {
+      reply.type("text/html").send("<html><body><h1>Hello world!</h1></body></html>");  
+    }, 1000);
+    
   });
 
   server.get("/nginx", async (request, reply) => {
